@@ -1,5 +1,5 @@
 
-$domain = "corp.local"
+$domain = "ajmaltech.local"
 $user = "corp\\Administrator"
 $pass = ConvertTo-SecureString "P@ssw0rd123!" -AsPlainText -Force
 $cred = New-Object System.Management.Automation.PSCredential ($user, $pass)

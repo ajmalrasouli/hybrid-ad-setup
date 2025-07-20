@@ -2,13 +2,13 @@
 provider "hyperv" {
   host     = "localhost"
   user     = "Administrator"
-  password = "YourSecurePassword123!"
+  password = var.admin_password
 }
 
 resource "hyperv_virtual_switch" "lab" {
   name         = "LabSwitch"
   type         = "external"
-  adapter_name = "Ethernet"
+  adapter_name = var.switch_adapter
 }
 
 resource "hyperv_vm" "dc_server" {
@@ -18,12 +18,12 @@ resource "hyperv_vm" "dc_server" {
   processor_count = 2
   switch_name    = hyperv_virtual_switch.lab.name
   disk {
-    path = "C:/Hyper-V/DC-Server/disk.vhdx"
+    path = "${var.vm_disk_base}/DC-Server/disk.vhdx"
     size = 60
   }
-  image_path = "C:/ISO/WindowsServer2019.iso"
+  image_path = var.iso_path
   admin_username = "Administrator"
-  admin_password = "YourSecurePassword123!"
+  admin_password = var.admin_password
 
   provisioner "local-exec" {
     command = "powershell.exe -ExecutionPolicy Bypass -File ../dsc/Trigger-DSC.ps1 -Role DC"
@@ -37,12 +37,12 @@ resource "hyperv_vm" "aad_server" {
   processor_count = 2
   switch_name    = hyperv_virtual_switch.lab.name
   disk {
-    path = "C:/Hyper-V/AADConnect-Server/disk.vhdx"
+    path = "${var.vm_disk_base}/AADConnect-Server/disk.vhdx"
     size = 60
   }
-  image_path = "C:/ISO/WindowsServer2019.iso"
+  image_path = var.iso_path
   admin_username = "Administrator"
-  admin_password = "YourSecurePassword123!"
+  admin_password = var.admin_password
 
   provisioner "local-exec" {
     command = "powershell.exe -ExecutionPolicy Bypass -File ../dsc/Trigger-DSC.ps1 -Role AAD"

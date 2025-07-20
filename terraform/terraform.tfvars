@@ -1,0 +1,6 @@
+admin_password   = "YourSecurePassword123!"
+iso_path         = "C:/ISO/WindowsServer2019.iso"
+vm_disk_base     = "C:/Hyper-V/"
+switch_adapter   = "Ethernet"
+domain_name      = "ajmaltech.local"
+safe_mode_pass   = "P@ssw0rd123!"
