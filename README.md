@@ -15,7 +15,7 @@ This project automates the creation of a **Hybrid Active Directory Lab** using:
 - Ready for Azure AD + Intune hybrid testing
 
 ## Architecture
-![Hybrid Architecture](diagrams/HybridAD-Architecture.png)
+![Hybrid Architecture](/architecture/diagrams/HybridAD-Architecture.png)
 
 ## Quick Start
 ### Requirements
